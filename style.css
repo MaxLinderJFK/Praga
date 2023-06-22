@@ -44,3 +44,8 @@ body {
             height: 40px;
             margin: 10px;
         }
+
+        .single-table th:nth-child(1),
+        .single-table td:nth-child(1) {
+           width: 10px;
+        }

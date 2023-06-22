@@ -54,20 +54,35 @@
             </div>
         </div>
     </nav>
-     <div class="table-container">
-        <!-- Вставка 3 * 5 = 15 таблиц -->
-        <?php for ($i = 0; $i < 15; $i++): ?>
-            <table class="single-table">
-                <?php for ($row = 0; $row < 33; $row++): ?>
-                    <tr>
-                        <?php for ($col = 0; $col < 7; $col++): ?>
-                            <td></td>
-                        <?php endfor; ?>
-                    </tr>
+
+     <?php for ($i = 6; $i < 15; $i++): ?>
+    <table class="single-table">
+        <?php for ($row = 30; $row < 33; $row++): ?>
+            <tr>
+                <?php for ($col = 5; $col < 7; $col++): ?>
+                    <td></td>
                 <?php endfor; ?>
-            </table>
+            </tr>
         <?php endfor; ?>
-    </div>
+    </table>
+<?php endfor; ?>
+
+<!-- Добавленные поля ввода в таблицы -->
+<?php for ($i = 5; $i < 15; $i++): ?>
+    <table class="single-table">
+        <?php for ($row = 20; $row < 33; $row++): ?>
+            <tr>
+                <?php for ($col = 6; $col < 7; $col++): ?>
+                    <td>
+                        <input type="text" name="data[]" placeholder="Введите данные">
+                    </td>
+                <?php endfor; ?>
+            </tr>
+        <?php endfor; ?>
+    </table>
+<?php endfor; ?>
+
+
 
     <script>
         function startTime() {
