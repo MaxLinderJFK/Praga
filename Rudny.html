@@ -23,6 +23,9 @@
         .bg-warning {
             background-color: warning;
         }
+        .small-column {
+            width: 50px;
+        }
     </style>
 </head>
 
@@ -56,14 +59,14 @@
     <div class="table-container">
         <table class="single-table">
             <tr> <!-- Заголовок таблицы -->
-                <th width="10">Номер</th>
+                <th class="small-column">Номер</th>
                 <th>Название</th>
                 <th>Количество</th>
                 <th>Заголовок 4</th>
             </tr>
             <?php for ($row = 0; $row < 30; $row++): ?>
                 <tr>
-                    <td width="10">
+                    <td>
                         <input type="text" name="data[]" placeholder="Введите данные">
                     </td>
                     <td>
