@@ -68,19 +68,28 @@
 <?php endfor; ?>
 
 <!-- Добавленные поля ввода в таблицы -->
-<?php for ($i = 5; $i < 15; $i++): ?>
-    <table class="single-table">
-        <?php for ($row = 20; $row < 33; $row++): ?>
-            <tr>
-                <?php for ($col = 6; $col < 7; $col++): ?>
-                    <td>
-                        <input type="text" name="data[]" placeholder="Введите данные">
-                    </td>
-                <?php endfor; ?>
-            </tr>
-        <?php endfor; ?>
-    </table>
-<?php endfor; ?>
+def generate_html():
+    tables = []
+
+    for i in range(5, 15):
+        rows = []
+
+        for row in range(20, 33):
+            cells = []
+
+            for col in range(6, 7):
+                cell = '<td><input type="text" name="data[]" placeholder="Введите данные"></td>'
+                cells.append(cell)
+
+            row_html = f"<tr>{''.join(cells)}</tr>"
+            rows.append(row_html)
+
+        table = f'<table class="single-table">{"".join(rows)}</table>'
+        tables.append(table)
+
+    return "".join(tables)
+
+html = generate_html()
 
 
 
