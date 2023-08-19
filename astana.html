@@ -6,12 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="DHL Express">
     <meta name="description" content="DHL Express">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблица</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="/iu.jpeg" alt="12" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <link rel="icon" href="/iu.jpeg" alt="12">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <style>
         .top-right {
@@ -21,9 +18,20 @@
             text-align: right;
             color: red;
         }
-
-        .bg-warning {
-            background-color: warning;
+        .navbar-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow-x: auto;
+            white-space: nowrap; /* add this line */
+            background-color: #ffc107;
+        }
+        .nav-link:hover {
+            background-color: #f8f9fa;
+            color: #333;
+            border-radius: 15px;
+            padding: 10px 20px;
         }
     </style>
 </head>
@@ -36,16 +44,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Дост</a>
+                    <a class="nav-link" aria-current="page" href="index.html">Доставочник</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="2places.html">Костанай</a>
+                    <a class="nav-link" href="2places.html">Костанай</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="Rudny.html">Рудный</a>
+                    <a class="nav-link" href="Rudny.html">Рудный</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="astana.html">Отчеты</a>
+                    <a class="nav-link" href="astana.html">Отчеты</a>
                 </li>
             </ul>
             <div class="top-right">
@@ -54,64 +62,54 @@
             </div>
         </div>
     </nav>
-
-     <?php for ($i = 6; $i < 15; $i++): ?>
-    <table class="single-table">
-        <?php for ($row = 30; $row < 33; $row++): ?>
-            <tr>
-                <?php for ($col = 5; $col < 7; $col++): ?>
-                    <td></td>
-                <?php endfor; ?>
-            </tr>
-        <?php endfor; ?>
-    </table>
-<?php endfor; ?>
-
-<!-- Добавленные поля ввода в таблицы -->
-<?php for ($i = 5; $i < 15; $i++): ?>
-    <table class="single-table">
-        <?php for ($row = 20; $row < 33; $row++): ?>
-            <tr>
-                <?php for ($col = 6; $col < 7; $col++): ?>
-                    <td>
-                        <input type="text" name="data[]" placeholder="Введите данные">
-                    </td>
-                <?php endfor; ?>
-            </tr>
-        <?php endfor; ?>
-    </table>
-<?php endfor; ?>
-
-
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning navbar-bottom">
+        <ul class="navbar-nav" id="daysOfYear">
+            <!-- Здесь будут добавлены дни года с помощью JavaScript -->
+        </ul>
+    </nav>
 
     <script>
+       function generateDaysOfYear() {
+    const daysContainer = document.getElementById("daysOfYear");
+    const startDate = new Date("2023-01-01");
+    const endDate = new Date("2024-01-01");
+
+    for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        const listItem = document.createElement("li");
+        listItem.className = "nav-item";
+
+        const link = document.createElement("a");
+        link.className = "nav-link";
+        link.href = `day_${year}_${month}_${day}.html`; // Формат URL для страницы
+        link.textContent = `${day}.${month}.${year}`;
+
+        listItem.appendChild(link);
+        daysContainer.appendChild(listItem);
+    }
+}
+
+
         function startTime() {
-            var tm = new Date();
-            var h = tm.getHours();
-            var m = tm.getMinutes();
-            var s = tm.getSeconds();
-            var day = tm.getDate();
-            var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
-            var month = months[tm.getMonth()];
-            var year = tm.getFullYear();
-            var daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-            var dayOfWeek = daysOfWeek[tm.getDay()];
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('dateTime').innerHTML = day + ' ' + month + ' ' + year + ' года. ' + dayOfWeek + ' ' + h + ":" + m + ":" + s;
+            const tm = new Date();
+            const h = tm.getHours().toString().padStart(2, '0');
+            const m = tm.getMinutes().toString().padStart(2, '0');
+            const s = tm.getSeconds().toString().padStart(2, '0');
+            const day = tm.getDate().toString().padStart(2, '0');
+            const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+            const month = months[tm.getMonth()];
+            const year = tm.getFullYear();
+            const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+            const dayOfWeek = daysOfWeek[tm.getDay()];
+            document.getElementById('dateTime').innerHTML = `${day} ${month} ${year} года. ${dayOfWeek} ${h}:${m}:${s}`;
             setTimeout(startTime, 500);
         }
 
-        function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i;
-            }
-            return i;
-        }
-
         startTime();
+        generateDaysOfYear();
     </script>
-
 </body>
 
 </html>
