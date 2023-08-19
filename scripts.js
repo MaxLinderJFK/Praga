@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
     table.appendChild(tbody);
 
     tableContainer.appendChild(table);
+    startTime();
+    generateDaysOfYear();
 });
-
-startTime();
-generateDaysOfYear();
