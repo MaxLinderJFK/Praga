@@ -76,3 +76,7 @@ body {
     padding: 0;
     border: none;
 }
+.active-day {
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
