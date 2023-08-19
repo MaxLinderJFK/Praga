@@ -1,5 +1,5 @@
 function generateDaysOfYear() {
-    const daysContainer = document.getElementById("daysOfYear");
+    const daysContainer = document.getElementById("daysOfYearNav");
     const startDate = new Date("2023-01-01");
     const endDate = new Date("2024-01-01");
     const today = new Date();
@@ -42,7 +42,6 @@ function startTime() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const tableContainer = document.getElementById('tableContainer');
     const table = document.createElement('table');
     table.border = "1";
 
