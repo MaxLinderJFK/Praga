@@ -44,6 +44,25 @@
             <!-- Здесь будут добавлены дни года с помощью JavaScript -->
         </ul>
     </nav>
+
+    <script>
+        function startTime() {
+            const tm = new Date();
+            const h = tm.getHours().toString().padStart(2, '0');
+            const m = tm.getMinutes().toString().padStart(2, '0');
+            const s = tm.getSeconds().toString().padStart(2, '0');
+            const day = tm.getDate().toString().padStart(2, '0');
+            const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+            const month = months[tm.getMonth()];
+            const year = tm.getFullYear();
+            const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+            const dayOfWeek = daysOfWeek[tm.getDay()];
+            document.getElementById('dateTime').innerHTML = `${day} ${month} ${year} года. ${dayOfWeek} ${h}:${m}:${s}`;
+            setTimeout(startTime, 500);
+        }
+
+        startTime();
+        generateDaysOfYear();
     </script>
 </body>
 
