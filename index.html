@@ -2,16 +2,15 @@
 <html lang="ru">
 
 <head>
-    <title>DHL Express</title>
     <meta charset="utf-8">
     <meta name="keywords" content="DHL Express">
     <meta name="description" content="DHL Express">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблица</title>
+    <title>DHL Express</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="/iu.jpeg" alt="12" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <link rel="icon" href="/iu.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <style>
         .top-right {
@@ -23,7 +22,7 @@
         }
 
         .bg-warning {
-            background-color: warning;
+            background-color: yellow;
         }
     </style>
 </head>
@@ -55,43 +54,12 @@
         </div>
     </nav>
 
-     <?php for ($i = 6; $i < 15; $i++): ?>
+    <!-- Example table -->
     <table class="single-table">
-        <?php for ($row = 30; $row < 33; $row++): ?>
-            <tr>
-                <?php for ($col = 5; $col < 7; $col++): ?>
-                    <td></td>
-                <?php endfor; ?>
-            </tr>
-        <?php endfor; ?>
+        <tr>
+            <td><input type="text" name="data[]" placeholder="Введите данные"></td>
+        </tr>
     </table>
-<?php endfor; ?>
-
-<!-- Добавленные поля ввода в таблицы -->
-def generate_html():
-    tables = []
-
-    for i in range(5, 15):
-        rows = []
-
-        for row in range(20, 33):
-            cells = []
-
-            for col in range(6, 7):
-                cell = '<td><input type="text" name="data[]" placeholder="Введите данные"></td>'
-                cells.append(cell)
-
-            row_html = f"<tr>{''.join(cells)}</tr>"
-            rows.append(row_html)
-
-        table = f'<table class="single-table">{"".join(rows)}</table>'
-        tables.append(table)
-
-    return "".join(tables)
-
-html = generate_html()
-
-
 
     <script>
         function startTime() {
