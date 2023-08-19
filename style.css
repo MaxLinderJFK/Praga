@@ -84,3 +84,13 @@ body {
     background-color: #333;
     color: white !important;
 }
+table {
+    border-collapse: collapse;  /* объединяет границы */
+    width: 60%;  /* 3 столбца * 20% */
+}
+
+th, td {
+    width: 20%;  /* ширина каждого столбца */
+    height: 50px;  /* высота каждой ячейки */
+    text-align: center;  /* выравнивание текста по центру */
+}
