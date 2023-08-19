@@ -89,8 +89,11 @@
         link.textContent = `${day}.${month}.${year}`;
 
         if (date.getTime() === today.getTime()) {
-            link.className += " active-day";  // добавляем дополнительный класс для сегодняшнего дня
-        }
+    console.log("Today's date found:", date);
+    link.className += " active-day";  
+}
+
+
 
         listItem.appendChild(link);
         daysContainer.appendChild(listItem);
@@ -121,6 +124,11 @@ generateDaysOfYear();
         background-color: #333;
         color: white !important;  // чтобы переопределить другие стили
     }
+    #daysOfYear .nav-link.active-day {
+    background-color: #333;
+    color: white !important;
+}
+
 </style>
 
 </body>
