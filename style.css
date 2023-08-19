@@ -97,3 +97,15 @@ th, td {
     height: 50px;  /* высота каждой ячейки */
     text-align: center;  /* выравнивание текста по центру */
 }
+.top-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
