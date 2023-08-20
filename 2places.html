@@ -43,7 +43,49 @@
             <!-- Здесь будут добавлены дни года с помощью JavaScript -->
         </ul>
     </nav>
-    <script src="script.js"></script>
+   
+    <script>
+        function generateDaysOfYear() {
+     const daysContainer = document.getElementById("daysOfYear");
+     const startDate = new Date("2023-01-01");
+     const endDate = new Date("2024-01-01");
+ 
+     for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+         const day = date.getDate().toString().padStart(2, '0');
+         const month = (date.getMonth() + 1).toString().padStart(2, '0');
+         const year = date.getFullYear();
+         const listItem = document.createElement("li");
+         listItem.className = "nav-item";
+ 
+         const link = document.createElement("a");
+         link.className = "nav-link";
+         link.href = `day_${year}_${month}_${day}.html`; // Формат URL для страницы
+         link.textContent = `${day}.${month}.${year}`;
+ 
+         listItem.appendChild(link);
+         daysContainer.appendChild(listItem);
+     }
+ }
+ 
+ 
+         function startTime() {
+             const tm = new Date();
+             const h = tm.getHours().toString().padStart(2, '0');
+             const m = tm.getMinutes().toString().padStart(2, '0');
+             const s = tm.getSeconds().toString().padStart(2, '0');
+             const day = tm.getDate().toString().padStart(2, '0');
+             const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+             const month = months[tm.getMonth()];
+             const year = tm.getFullYear();
+             const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+             const dayOfWeek = daysOfWeek[tm.getDay()];
+             document.getElementById('dateTime').innerHTML = `${day} ${month} ${year} года. ${dayOfWeek} ${h}:${m}:${s}`;
+             setTimeout(startTime, 500);
+         }
+ 
+         startTime();
+         generateDaysOfYear();
+     </script>
 </body>
 
 </html>
