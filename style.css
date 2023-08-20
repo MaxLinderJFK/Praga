@@ -1,5 +1,5 @@
 body {
-    background-color: #ccc;
+    background-color: #d1cfcf;
     font-family: arial;
 }
 
@@ -11,7 +11,7 @@ body {
 
 .time {
     color: red;
-    font-family: tahoma;
+    font-family: arial;
     float: right;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .nav-link:active {
-    background-color: #f0f0f0;
+    background-color: #ffee55;
     transform: scale(0.95);
     transition: all 0.2s ease-in-out;
 }
@@ -71,7 +71,6 @@ body {
 .other-column {
     width: 27%; /* оставшиеся столбцы займут оставшееся пространство */
 }
-
 .single-table td, .single-table th {
     padding: 0;
     border: none;
