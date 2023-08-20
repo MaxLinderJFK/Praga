@@ -65,27 +65,59 @@
             <!-- Здесь будут добавлены дни года с помощью JavaScript -->
         </ul>
     </nav>
-    <div class="container mt-5">
-        <table class="table">
-            <thead class="table-warning">
-                <tr>
-                    <th>Название компнаии</th>
-                    <th>Количество мест</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text">/td>
-                    <td><input type="text">/td>
-                    <td><input type="text">/td>
-                    <td><input type="text">/td>
-                </tr>
-                <tr>
-                    <td>Ячейка 3</td>
-                    <td>Ячейка 4</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Добавленная таблица -->
+<div class="container mt-5">
+    <table class="table data-table">
+        <thead class="table-warning">
+            <tr>
+                <th>Заголовок 1</th>
+                <th>Заголовок 2</th>
+            </tr>
+        </thead>
+        <tbody>
+         <script>
+            function generateTableRows() {
+    const tableBody = document.querySelector('.data-table tbody');
+    for (let i = 0; i < 20; i++) {
+        let tr = document.createElement('tr');
+        for (let j = 0; j < 2; j++) {
+            let td = document.createElement('td');
+            td.textContent = ''; // начальное значение
+            tr.appendChild(td);
+        }
+        tableBody.appendChild(tr);
+    }
+}
+
+function insertData() {
+    const rowNumber = parseInt(document.getElementById('rowNumber').value) - 1;
+    const columnNumber = parseInt(document.getElementById('columnNumber').value) - 1;
+    const inputData = document.getElementById('inputData').value;
+
+    if (rowNumber >= 0 && rowNumber < 20 && columnNumber >= 0 && columnNumber < 2) {
+        const tableBody = document.querySelector('.data-table tbody');
+        tableBody.rows[rowNumber].cells[columnNumber].textContent = inputData;
+    } else {
+        alert("Неверный номер строки или столбца!");
+    }
+}
+
+// Вызываем функцию генерации строк при загрузке страницы
+window.onload = function() {
+    generateTableRows();
+}
+
+         </script>   <!-- Заполнение 20 строк с использованием JavaScript -->
+        </tbody>
+    </table>
+    <div class="mt-3">
+        <input type="number" id="rowNumber" placeholder="Номер строки" min="1" max="20">
+        <input type="number" id="columnNumber" placeholder="Номер столбца (1 или 2)" min="1" max="2">
+        <input type="text" id="inputData" placeholder="Данные для записи">
+        <button onclick="insertData()">Записать</button>
+    </div>
+</div>
+
     </div>
 
     <script>

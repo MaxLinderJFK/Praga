@@ -72,3 +72,33 @@ document.addEventListener("DOMContentLoaded", function() {
     startTime();
     generateDaysOfYear();
 });
+function generateTableRows() {
+    const tableBody = document.querySelector('.data-table tbody');
+    for (let i = 0; i < 20; i++) {
+        let tr = document.createElement('tr');
+        for (let j = 0; j < 2; j++) {
+            let td = document.createElement('td');
+            td.textContent = ''; // начальное значение
+            tr.appendChild(td);
+        }
+        tableBody.appendChild(tr);
+    }
+}
+
+function insertData() {
+    const rowNumber = parseInt(document.getElementById('rowNumber').value) - 1;
+    const columnNumber = parseInt(document.getElementById('columnNumber').value) - 1;
+    const inputData = document.getElementById('inputData').value;
+
+    if (rowNumber >= 0 && rowNumber < 20 && columnNumber >= 0 && columnNumber < 2) {
+        const tableBody = document.querySelector('.data-table tbody');
+        tableBody.rows[rowNumber].cells[columnNumber].textContent = inputData;
+    } else {
+        alert("Неверный номер строки или столбца!");
+    }
+}
+
+// Вызываем функцию генерации строк при загрузке страницы
+window.onload = function() {
+    generateTableRows();
+}

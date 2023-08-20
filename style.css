@@ -82,15 +82,35 @@ body {
     background-color: #333;
     color: white !important;
 }
-table {
-    border-collapse: collapse;  /* объединяет границы */
-    width: 60%;  /* 3 столбца * 20% */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-th, td {
-    width: 20%;  /* ширина каждого столбца */
-    height: 50px;  /* высота каждой ячейки */
-    text-align: center;  /* выравнивание текста по центру */
+.data-table thead tr {
+    background-color: #ffc107;
+    color: white;
+    text-align: center;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.data-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.data-table tbody tr:last-of-type {
+    border-bottom: 2px solid #ffc107;
 }
 
 .navbar-bottom {
