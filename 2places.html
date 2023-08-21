@@ -33,7 +33,7 @@
             background-color: #f8f7f6;
             color: #333;
             border-radius: 15px;
-            padding: 10px 20px;
+            padding: 10px 30px;
         }
     </style>
 <body>
@@ -72,34 +72,48 @@
         </ul>
     </nav>
     <!-- Добавленная таблица -->
-<div class="container mt-5">
-    <table class="table data-table">
-        <thead class="table-warning">
-            <tr>
-                <th>Название Компаний</th>
-                <th>Количество принятых мест</th>
-                <th>Сумма</th>
-                <th>Номер накладной</th>
-            </tr>
-        </thead>
-        <tbody>
-         <script>
-           function generateTableRows() {
-    const tableBody = document.querySelector('.data-table tbody');
-    for (let i = 0; i < 20; i++) {
-        let tr = document.createElement('tr');
-        for (let j = 0; j < 4; j++) {
-            let td = document.createElement('td');
-            td.textContent = ''; // начальное значение
-            td.onclick = handleCellClick; // добавляем обработчик события
-            tr.appendChild(td);
-        }
-        tableBody.appendChild(tr);
-    }
-}
-
-function handleCellClick(event) {
-    const cell = event.target;
+    <div class="container mt-5">
+        <div class="tables-wrapper">
+            <div class="left-tables">
+                <table class="table data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Кол-во</th>
+                            <th>Сумма</th>
+                            <th>№ AWB</th>
+                        </tr>
+                    </thead>
+                    <tbody data-rows="10" data-cols="4"></tbody>
+                </table>
+    
+                <table class="table data-table">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>KSX-3</th>
+                            <th>Кол-во мест</th>
+                            <th>KSX-4</th>
+                            <th>Кол-во мест</th>
+                        </tr>
+                    </thead>
+                    <tbody data-rows="20" data-cols="4"></tbody>
+                </table>
+    </div>
+                <table class="table data-table table-small">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>№ AWB</th>
+                            <th>Name</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody data-rows="10" data-cols="3"></tbody>
+                </table>
+        </div>
+    </div>
+    <script>
+        function handleCellClick(event) {
+            const cell = event.target;
     const currentText = cell.textContent;
     cell.textContent = '';
 
@@ -117,32 +131,46 @@ function handleCellClick(event) {
     cell.appendChild(input);
     cell.onclick = null; // временно удаляем обработчик события, чтобы избежать повторного срабатывания
 }
-
-// Вызываем функцию генерации строк при загрузке страницы
-window.onload = function() {
-    generateTableRows();
-}
-
-         </script>   <!-- Заполнение 20 строк с использованием JavaScript -->
-        </tbody>
-    </table>
-</div>
+        
+function generateTableRows() {
+        const tableBodies = document.querySelectorAll('.data-table tbody');
+    tableBodies.forEach(function(tableBody) {
+        // Получаем количество строк и столбцов из атрибутов data-rows и data-cols
+        const rowCount = parseInt(tableBody.getAttribute('data-rows'), 10);
+        const colCount = parseInt(tableBody.getAttribute('data-cols'), 10);
+        
+        for (let i = 0; i < rowCount; i++) {
+            let tr = document.createElement('tr');
+            for (let j = 0; j < colCount; j++) {
+                let td = document.createElement('td');
+                td.textContent = ''; // начальное значение
+                td.onclick = handleCellClick; // добавляем обработчик события
+                tr.appendChild(td);
+            }
+            tableBody.appendChild(tr);
+        }
+    });
+}           window.onload = function() {
+            generateTableRows();
+        }
+        </script>                  
 <style>
+
 .data-table {
     width: 100%;
     background-color: #d1ccbe;
     border-collapse: collapse;
     margin: 25px 0;
-    font-family: arial;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.data-table thead tr {
-    background-color: #fee504;
+/* Общие стили для всех шапок */
+.data-table thead {
+    background-color: #ffc107;
     font-family: arial;
-    font-size: 16px;
+    font-size: 14px;
     color: red;
     text-align: center;
 }
@@ -152,10 +180,18 @@ window.onload = function() {
     width: 150px;
     min-height: 50px;  /* Установите желаемую высоту */
 }
-.data-table thead th {
-    font-size: 16px;  /* Размер шрифта для названия */
-    font-family: arial;
+.data-table thead, .data-table thead.table-warning {
+    background-color: #ffc107;
     color: red;
+}
+.data-table thead.table-warning th {
+    background-color: #ffc107;
+    color: red;
+}
+
+.data-table thead th {
+    min-height: 20px; /* Задайте здесь ваше предпочитаемое значение */
+    line-height: 10px; /* Чтобы вертикально выровнять текст */
 }
 
 .data-table tbody tr {
@@ -170,52 +206,66 @@ window.onload = function() {
 .data-table tbody tr:last-of-type {
     border-bottom: 2px solid #f50804;
 }
+.data-table:nth-of-type(2) {
+    margin-top: -20px; /* Здесь -20px в качестве примера, вы можете задать другое значение */
+}
+.tables-wrapper {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    gap: 20px;
+}
+
+.left-tables {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    width: 100%; /* Ширина блока с двумя левыми таблицами */
+}
+
 </style>
-
-    </div>
-
     <script>
         function generateDaysOfYear() {
-     const daysContainer = document.getElementById("daysOfYear");
-     const startDate = new Date("2023-01-01");
-     const endDate = new Date("2024-01-01");
+    const daysContainer = document.getElementById("daysOfYearNav");
+    const startDate = new Date("2023-01-01");
+    const endDate = new Date("2024-01-01");
 
-     for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
-         const day = date.getDate().toString().padStart(2, '0');
-         const month = (date.getMonth() + 1).toString().padStart(2, '0');
-         const year = date.getFullYear();
-         const listItem = document.createElement("li");
-         listItem.className = "nav-item";
+    for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        const listItem = document.createElement("li");
+        listItem.className = "nav-item";
 
-         const link = document.createElement("a");
-         link.className = "nav-link";
-         link.href = `day_${year}_${month}_${day}.html`; // Формат URL для страницы
-         link.textContent = `${day}.${month}.${year}`;
+        const link = document.createElement("a");
+        link.className = "nav-link";
+        link.href = `day_${year}_${month}_${day}.html`; // Формат URL для страницы
+        link.textContent = `${day}.${month}.${year}`;
 
-         listItem.appendChild(link);
-         daysContainer.appendChild(listItem);
-     }
- }
+        listItem.appendChild(link);
+        daysContainer.appendChild(listItem);
+    }
+}
 
+function startTime() {
+    const tm = new Date();
+    const h = tm.getHours().toString().padStart(2, '0');
+    const m = tm.getMinutes().toString().padStart(2, '0');
+    const s = tm.getSeconds().toString().padStart(2, '0');
+    const day = tm.getDate().toString().padStart(2, '0');
+    const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+    const month = months[tm.getMonth()];
+    const year = tm.getFullYear();
+    const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    const dayOfWeek = daysOfWeek[tm.getDay()];
+    document.getElementById('dateTime').innerHTML = `${day} ${month} ${year} года. ${dayOfWeek} ${h}:${m}:${s}`;
+    setTimeout(startTime, 500);
+}
 
-         function startTime() {
-             const tm = new Date();
-             const h = tm.getHours().toString().padStart(2, '0');
-             const m = tm.getMinutes().toString().padStart(2, '0');
-             const s = tm.getSeconds().toString().padStart(2, '0');
-             const day = tm.getDate().toString().padStart(2, '0');
-             const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
-             const month = months[tm.getMonth()];
-             const year = tm.getFullYear();
-             const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-             const dayOfWeek = daysOfWeek[tm.getDay()];
-             document.getElementById('dateTime').innerHTML = `${day} ${month} ${year} года. ${dayOfWeek} ${h}:${m}:${s}`;
-             setTimeout(startTime, 500);
-         }
+startTime();
+generateDaysOfYear();
 
-         startTime();
-         generateDaysOfYear();
-     </script>
+    </script>
 </body>
 
 </html>
